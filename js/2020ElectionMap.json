@@ -566,7 +566,7 @@
         },
         "tooltip": [
             {
-                "field": "State",
+                "field": "state",
                 "title": "State"
             },
             {
