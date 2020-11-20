@@ -1,1 +1,366 @@
-<h1>Hello!</h1>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Data Viz II - Sina Amini </title>
+    <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+    <!-- Import vega-embed -->
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+    <!-- Import pure.css -->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+        integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- custom style -->
+    <style>
+        * {
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        h1 {
+            font-weight: 750;
+            text-align: center;
+            font-size: 40px;
+            font-family: Helvetica;
+        }
+
+        h2 {
+            font-weight: 500;
+            text-align: center;
+            font-size: 25px;
+        }
+
+        h3 {
+            font-weight: 300;
+            text-align: left;
+            font-size: 20px;
+        }
+
+        t1 {
+            text-align: center;
+        }
+
+        body {
+            background-color: rgb(0, 0, 0);
+        }
+
+        .page {
+            width: 1050px;
+            background-color: #ffffff;
+            margin: auto;
+            padding: 30px;
+            padding-top: 35px;
+        }
+
+        .vis-container {
+            width: 100%;
+        }
+
+        .description h2 {
+            /* border: 1px outset black; */
+            /* background-color: lightblue; */
+            margin-top: 0px;
+        }
+
+        .description-right {
+            padding-left: 20px;
+            text-align: center;
+
+
+        }
+
+        .description-left {
+            padding-right: 20px;
+            text-align: center;
+
+        }
+
+        .pure-g {
+            margin-bottom: 25px;
+        }
+
+        .small-font {
+            font-weight: 200;
+            text-align: center;
+            font-size: 15px;
+            font-family: Helvetica;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        p1 {
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+
+
+        <!-- pure grid group -->
+        <div class="pure-g">
+            <div class="pure-u-1-1">
+                <h1>US Presidential Election: Learning from 2016 & 2020</h1>
+                <h3> The <b>United States 2020 Presidential Election</b> has unseated the incumbent Donald J. Trump. What has Trump done in the last 4 years? 
+                    1, he managed to sign an executive order that bans people visiting the United States from Iran, Iraq, Somalia, Libya, Sudan, Syria and Yemen for 90 days. 
+                    2, he was trialed for impeachment on abuse of power. 3, he separated children from their parents at the US-Mexico Border, 
+                    it resulted in more than the deportation of 500 children without their parents. </h3>
+                <h3><b>Joe Biden is the President-Elect</b> that has managed to outdone Trump at the polls by a total of 5,975,789 votes. 
+                    How did he manage to shorten the Trump administration into a one-term presidency?  
+                    We will dive deep into the nitty-gritty of flipped states, voter turnout, and demographic trends to achieve a comprehensive understanding.</h3>
+            </div>
+        </div>
+
+        <!-- end pure grid group -->
+
+                <!-- pure grid group -->
+                <div class="pure-g">
+                    <div class="pure-u-1-5">
+                        <div id="vis01" class="vis-container"></div>
+                    </div>
+                    <div class="pure-u-1-5">
+                        <h2> </h2>
+                    </div>
+                    <div class="pure-u-1-5">
+                        <h2> </h2>
+                    </div>
+                    <div class="pure-u-1-5">
+                        <div id="vis02" class="vis-container"></div>
+                    </div>
+                </div>
+                <!-- end pure grid group -->
+
+                <!-- pure grid group -->
+                <div class="pure-g">
+                    <div class="pure-u-1-2">
+                        <h2> </h2>
+                        <h2> <b>In 2016</b>, the jokes about Donald Trump as President were gaining momentum, 
+                            nobody expected Americans to vote him into office. Until, he won the election. 
+                            Whilst Hillary Clinton won the popular vote by 65.84mil votes, a difference of 2.86mil votes to Trump. 
+                            How? In states with many electoral votes, Trump won by a slim margin. 
+                            Florida (with 29 electoral votes) sided with Trump by a margin of 1%, 
+                            Pennsylvania (20 electoral votes) by a margin of 1.1%, and Michigan (16 electoral votes) by 0.3%.</h2>
+                    </div>
+                    <div class="pure-u-1-2">
+                        <h2> <b>In 2020</b>, despite the severity of a global pandemic, the 2020 election was a highly-anticipated event.
+                            Evident in the highest voter turnout of 65.1% in over 100 years! More than half of the states saw increased participation, 
+                            successfully voting Biden into office. Biden won key states such as Pennsylvania (20 electoral votes) with a margin of 2.8%, 
+                            Michigan (16 electoral votes) with a margin of 5.1%, Georgia (16 electoral votes) with a margin of 1.3%. 
+                            These were the states that voted in favour of Trump in 2016.</h2>
+                    </div>
+                </div>
+
+                <!-- end pure grid group -->
+
+
+
+        <!-- pure grid group -->
+        <div class="pure-g">
+            <div class="pure-u-1-1">
+                <div class="description description-left">
+                    <h2><b>Flipped States</b> -  Democrat Takeover (2016 to 2020)</h2>
+                    <p><b></p>
+                </div>
+                <div class="pure-u-1-1">
+                    <div id="vis03" class="vis-container"></div>
+                </div>
+            </div>
+            <!-- end pure grid group -->
+
+
+            <!-- pure grid group -->
+            <div class="pure-g">
+                <div class="pure-u-1-1">
+                    <h2> </h2>
+                    <p> Swing states are when neither political party has ever been the consistent choice, 
+                        voters in swing states hold a higher probability of deciding the presidential election. 
+                        In contrast to safe states, which are states with expected leads in a political party. 
+                        Arizona (11 electoral votes) had voted Republican in 10 of the past 11 elections. 
+                        Georgia (16 electoral votes) had voted Republican in 8 out of the past 11 elections. 
+                        A surprising flipped of events. Arizona, the home state of conservative Barry Goldwater, 
+                        had not voted for Democrat since 1996. In 2020, voter turnout increased by 10 percentage points since 2016, 
+                        with more than 300,000 Democratic voters turned out. Similarly, Georgia had not voted Democrat since 1992. 
+                        Yet, Biden won by 14,000 votes.
+                        <br>
+                        <br>
+                        Whilst Clinton lost Michigan (16), Pennsylvania (20), and Wisconsin (10) in a close-call. These states have historically lean towards the Democratic nominee.</p>
+                </div>
+            </div>
+
+            <!-- end pure grid group -->
+
+
+
+                <!-- pure grid group -->
+                <div class="pure-g">
+                    <div class="pure-u-1-1">
+                        <h2><b>Voter Turnout: 2016 vs. 2020</b></h2>
+                        <div id="vis04" class="vis-container"></div>
+                    </div>
+                </div>
+                <!-- end pure grid group -->
+
+                <!-- pure grid group -->
+            <div class="pure-g">
+                <div class="pure-u-1-1">
+                    <h2> </h2>
+                    <p> <b>Amidst social distancing safety, mail-in ballots and early in-person voting were favored to avoid the crowd. 
+                        In 2020, 99mil people participated in early-voting, that's nearly three quarters of the entire 2016 voter turnout! 
+                        The swing states saw an increase in voter turnout since 2016, 
+                        states such as Minnesota nearly achieved 80% turnout of voters. The voter turnout in 2020 surpassed 2016, 
+                        marginalized communities were especially galvanized this election to exercise their democratic rights. </p>
+                </div>
+            </div>
+
+            <!-- end pure grid group -->
+
+                <!-- pure grid group -->
+                <div class="pure-g">
+                    <div class="pure-u-1-1">
+                        <div class="description description-left">
+                            <h2><b>Demographic Trends</b></h2>
+                            <p><b></p>
+                        </div>
+                    </div>
+                    <div class="pure-u-3-4">
+                        <div class="pure-g">
+                            <div class="pure-u-1-5">
+                                <h3>2016</h3>
+                                <div id="vis05" class="vis-container"></div>
+                                <div id="vis06" class="vis-container"></div>
+                                <div id="vis07" class="vis-container"></div>
+                                <div id="vis08" class="vis-container"></div>
+                            </div>
+                            <div class="pure-u-1-5">
+                                <h2> </h2>
+                            </div>
+
+                            <div class="pure-u-1-5">
+                                <h2> </h2>
+                            </div>
+                            <div class="pure-u-1-5">
+                                <h3>2020</h3>
+                                <div id="vis09" class="vis-container"></div>
+                                <div id="vis10" class="vis-container"></div>
+                                <div id="vis11" class="vis-container"></div>
+                                <div id="vis12" class="vis-container"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end pure grid group -->
+
+                <!-- pure grid group -->
+                <div class="pure-g">
+                    <div class="pure-u-1-1">
+                        <h2> </h2>
+                        <h2> Demographic Trends: 
+
+                            In order to fully understand the election, a comparison analysis of the demographic trends is necessary. 
+                            This will inform the future elections, and our current knowledge of the present. 
+                            A persistent trend across 2016 and 2020 is the older white men, 
+                            they were more likely to support the Republican nominee; 
+                            whilst young POC adults were more likely to vote the Democratic nominee.</h2>
+                    </div>
+                </div>
+
+                <!-- end pure grid group -->
+
+                <div class="pure-g">
+                    <div class="pure-u-1-1 small-font">
+                        <p1>The visualisation is made by <a href="https://github.com/sami0007-student"
+                                target="_blank">Sina Amini</a>. The data has been retrieved from NBC News and can be found <a
+                                href="https://github.com/sami0007-student/DataViz2/tree/main/Data" target="_blank"> here</href></a>. November 2020 </p1>
+                    </div>
+                </div>
+
+
+            </div> <!-- end page -->
+
+            <script type="text/javascript">
+                
+                var specVis01 = "js/2016ElectionMap.json";
+                var specVis02 = "js/2020ElectionMap.json";
+                
+                
+                var specVis03 = "js/dotPlot.json";
+                var specVis04 = "js/scatterPlot.json";
+            
+                
+
+                var specVis05 = "js/2016ElectionGender.json";
+                var specVis06 = "js/2016ElectionRace.json";
+                var specVis07 = "js/2016ElectionAge.json";
+                var specVis08 = "js/2016ElectionEducation.json";
+                    
+                
+                
+                var specVis09 = "js/2020ElectionGender.json";
+                var specVis10 = "js/2020ElectionRace.json";
+                var specVis11 = "js/2020ElectionAge.json";
+                var specVis12 = "js/2020ElectionEducation.json";
+                
+                vegaEmbed('#vis01', specVis01, { "actions": false }).then(function (result) {
+                    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+                }).catch(console.error);
+                
+                vegaEmbed('#vis02', specVis02, { "actions": false }).then(function (result) {
+                    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+                }).catch(console.error);
+
+                vegaEmbed('#vis03', specVis03, { "actions": false }).then(function (result) {
+                    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+                }).catch(console.error);
+
+                vegaEmbed('#vis04', specVis04, { "actions": false }).then(function (result) {
+                    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+                }).catch(console.error);
+
+
+
+                vegaEmbed('#vis05', specVis05, { "actions": false }).then(function (result) {
+                    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+                }).catch(console.error);
+
+                vegaEmbed('#vis06', specVis06, { "actions": false }).then(function (result) {
+                    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+                }).catch(console.error);
+
+                vegaEmbed('#vis07', specVis07, { "actions": false }).then(function (result) {
+                    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+                }).catch(console.error);
+
+                vegaEmbed('#vis08', specVis08, { "actions": false }).then(function (result) {
+                    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+                }).catch(console.error);
+
+
+
+                
+                vegaEmbed('#vis09', specVis09, { "actions": false }).then(function (result) {
+                    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+                }).catch(console.error);
+
+                vegaEmbed('#vis10', specVis10, { "actions": false }).then(function (result) {
+                    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+                }).catch(console.error);
+
+                vegaEmbed('#vis11', specVis11, { "actions": false }).then(function (result) {
+                    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+                }).catch(console.error);
+
+                vegaEmbed('#vis12', specVis12, { "actions": false }).then(function (result) {
+                    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+                }).catch(console.error);
+            </script>
+</body>
+
+</html>

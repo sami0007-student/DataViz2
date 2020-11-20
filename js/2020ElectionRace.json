@@ -1,0 +1,75 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+    "data": {
+      "values": [
+        {
+          "demographic": "White",
+          "vote": 42.5,
+          "Party": "Democrat"
+        },
+        {
+          "demographic": "White",
+          "vote": 57.5,
+          "Party": "Republican"
+        },
+        {
+          "demographic": "Black",
+          "vote": 88,
+          "Party": "Democrat"
+        },
+        {
+          "demographic": "Black",
+          "vote": 12,
+          "Party": "Republican"
+        },
+        {
+          "demographic": "Latino",
+          "vote": 67.5,
+          "Party": "Democrat"
+        },
+        {
+          "demographic": "Latino",
+          "vote": 32.5,
+          "Party": "Republican"
+        },
+        {
+          "demographic": "Asian",
+          "vote": 66.5,
+          "Party": "Democrat"
+        },
+        {
+          "demographic": "Asian",
+          "vote": 33.5,
+          "Party": "Republican"
+        },
+        {
+          "demographic": "Other",
+          "vote": 59.5,
+          "Party": "Democrat"
+        },
+        {
+          "demographic": "Other",
+          "vote": 40.5,
+          "Party": "Republican"
+        }
+      ]
+    },
+    "mark": "bar",
+    "width": {"step": 17},
+    "encoding": {
+      "x": {
+        "aggregate": "sum",
+        "field": "vote",
+        "title": "Votes",
+        "stack": "center"
+      },
+      "y": {"field": "demographic", "title": "Race"},
+      "color": {"field": "Party", "scale": {"range": ["blue", "red"]}},
+      "tooltip": [
+        {
+            "field": "vote",
+            "title": "% of Votes"
+        }
+    ]
+    }
+  }

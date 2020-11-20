@@ -1,0 +1,171 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+    "width": "container",
+    "height": "225",
+    "data": {
+        "values": [
+            {
+                "states": "Arizona",
+                "vote": 45.4,
+                "year": 2016
+            },
+            {
+                "states": "Georgia",
+                "vote": 45.6,
+                "year": 2016
+            },
+            {
+                "states": "Michigan",
+                "vote": 47.3,
+                "year": 2016
+            },
+            {
+                "states": "Pennsylvania",
+                "vote": 47.6,
+                "year": 2016
+            },
+            {
+                "states": "Wisconsin",
+                "vote": 47,
+                "year": 2016
+            },
+            {
+                "states": "Arizona",
+                "vote": 49.4,
+                "year": 2020
+            },
+            {
+                "states": "Georgia",
+                "vote": 49.5,
+                "year": 2020
+            },
+            {
+                "states": "Michigan",
+                "vote": 50.6,
+                "year": 2020
+            },
+            {
+                "states": "Pennsylvania",
+                "vote": 50,
+                "year": 2020
+            },
+            {
+                "states": "Wisconsin",
+                "vote": 49.5,
+                "year": 2020
+            }
+        ]
+    },
+    "transform": [
+        {
+            "filter": {
+                "field": "states",
+                "oneOf": [
+                    "Wisconsin",
+                    "Pennsylvania",
+                    "Michigan",
+                    "Georgia",
+                    "Arizona"
+                ]
+            }
+        },
+        {
+            "filter": {
+                "field": "year",
+                "oneOf": [
+                    2016,
+                    2020
+                ]
+            }
+        }
+    ],
+    "encoding": {
+        "x": {
+            "field": "vote",
+            "type": "nominal",
+            "title": "Percentage of Votes"
+        },
+        "y": {
+            "field": "states",
+            "type": "nominal",
+            "title": "Flipped States",
+            "axis": {
+                "offset": 5,
+                "ticks": false,
+                "minExtent": 70,
+                "domain": false
+            }
+        }
+    },
+    "layer": [
+        {
+            "mark": "line",
+            "encoding": {
+                "detail": {
+                    "field": "states",
+                    "type": "nominal"
+                },
+                "color": {
+                    "value": "black"
+                }
+            }
+        },
+        {
+            "mark": {
+                "type": "point",
+                "stroke": "black",
+                "strokeWidth": 1,
+                "filled": true
+            },
+            "encoding": {
+                "color": {
+                    "field": "year",
+                    "type": "ordinal",
+                    "scale": {
+                        "domain": [
+                            2016,
+                            2020
+                        ],
+                        "range": [
+                            "red",
+                            "blue"
+                        ]
+                    },
+                    "title": "Year"
+                },
+                "size": {
+                    "value": 100
+                },
+                "opacity": {
+                    "value": 1
+                },
+                "tooltip": [
+                    {
+                        "field": "states",
+                        "type": "nominal",
+                        "title": "State"
+                    },
+                    {
+                        "field": "vote",
+                        "type": "quantitative",
+                        "title": "% of votes"
+                    }
+                ]
+            }
+        }
+    ],
+    "config": {
+        "style": {
+            "cell": {
+                "stroke": "transparent"
+            }
+        },
+        "background": "#ebe9e5",
+        "font": "",
+        "axis": {
+            "labelFontSize": 11,
+            "titleFontSize": 13,
+            "titlePadding": 10
+        }
+    }
+}

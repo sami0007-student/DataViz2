@@ -1,0 +1,45 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+    "data": {
+      "values": [
+        {
+          "demographic": "Yes",
+          "vote": 56,
+          "Party": "Democrat"
+        },
+        {
+          "demographic": "Yes",
+          "vote": 44,
+          "Party": "Republican"
+        },
+        {
+          "demographic": "No",
+          "vote": 46.5,
+          "Party": "Democrat"
+        },
+        {
+          "demographic": "No",
+          "vote": 53.5,
+          "Party": "Republican"
+        }
+      ]
+    },
+    "mark": "bar",
+    "width": {"step": 17},
+    "encoding": {
+      "x": {
+        "aggregate": "sum",
+        "field": "vote",
+        "title": "Votes",
+        "stack": "center"
+      },
+      "y": {"field": "demographic", "title": "College degree"},
+      "color": {"field": "Party", "scale": {"range": ["blue", "red"]}},
+      "tooltip": [
+        {
+            "field": "vote",
+            "title": "% of Votes"
+        }
+    ]
+    }
+  }
